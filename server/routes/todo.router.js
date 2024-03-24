@@ -30,12 +30,13 @@ router.post('/', (req, res) => {
 
 // PUT
 router.put('/:id', (req, res) => {
+    const task = req.params;
     console.log('req.params', req.params);
     let queryText = `
         UPDATE "todo" SET "task" = $2, "duedate" = $3
         WHERE "id" = $1;
         `;
-    pool.query(queryText, [req.params.id, req.params.task, req.params.duedate])
+    pool.query(queryText, [task.id, task.task, task.duedate])
         .then(() => {
             res.sendStatus(200);
         }).catch((error) => {
