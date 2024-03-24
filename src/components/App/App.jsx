@@ -13,8 +13,8 @@ function App () {
       console.log('Data:', response.data);
       setTodoList(response.data);
     }).catch((error) => {
-      console.log('Error in axios GET', error);
-      alert('Something went wrong')
+      console.log('Error in axios GET:', error);
+      alert('Something went wrong in axios.get')
     })
   };
 
@@ -22,10 +22,25 @@ useEffect(() => {
   getTodoList();
 }, []);
 
+const sendToServer = (e) => {
+  e.preventDefault();
+  console.log('task:', todoItem);
+  // variable for axio post
+  const data = { task: todoItem, duedate: duedate }
+  axios.post('/api/todo', data).then((response) => {
+    getTodoList();
+  }).catch((error) => {
+    console.log('Error in axios POST:', error);
+    alert('Something went wrong in axios.post')
+  })
+
+
+}
+
   return (
     <div>
       <h1>TO DO APP</h1>
-      <form>
+      <form onSubmit={sendToServer} >
         New task: <input type="text" value={todoItem} 
         onChange={(e) => setTodoItem(e.target.value)} />
         Due on: <input type="date" value={duedate} 
