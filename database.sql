@@ -1,5 +1,6 @@
 CREATE TABLE "todo" (
     id SERIAL PRIMARY KEY,
     task VARCHAR NOT NULL,
-    dueDate DATE
-)
+    duedate DATE,
+    completed boolean DEFAULT false
+);
