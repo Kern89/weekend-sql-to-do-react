@@ -17,9 +17,10 @@ function App () {
       alert('Something went wrong in axios.get')
     })
   };
-  const deleteTask = () => {
-    axios.delete('/api/todo/:id').then((response) => {
+  const deleteTask = (id) => {
+    axios.delete(`/api/todo/${id}`).then((response) => {
       console.log('In axios delete');
+      getTodoList();
     }).catch((error) => {
       console.log('Error in axios delete:', error);
       alert('Something went wrong in axios delete')
@@ -41,23 +42,37 @@ function App () {
     console.log('Error in axios POST:', error);
     alert('Something went wrong in axios.post')
     })
+  };
 
-
+  const completeTask = (id) => {
+    console.log('Complete:', id);
+    axios.put(`/api/todo/complete/${id}`).then((response) => {
+      getTodoList();
+    }).catch((error) => {
+      console.log('Error in axios PUT:', error);
+      alert('Something went wrong in axios.PUT')
+    })
   }
 
   return (
     <div>
-      <h1>TO DO APP</h1>
+      <h1>Complete-Me List App</h1>
       <form onSubmit={sendToServer} >
         New task: <input type="text" value={todoItem} 
         onChange={(e) => setTodoItem(e.target.value)} />
+        <br />
+        <br />
         Due on: <input type="date" value={duedate} 
         onChange={(e) => setDueDate(e.target.value)} />
-        <input type="submit" value="submit" />
+        <br />
+        <div id='submitContainer'>
+          <input type="submit" value="submit" id="submit" />
+        </div>
       </form>
       <br />
       <br />
       {/* table for tasks */}
+      <div id='table' >
       <table>
         <thead>
           <tr>
@@ -70,17 +85,18 @@ function App () {
         <tbody>
         {
           todoList.map((task) => {
-            return <tr key={task.id}>
-              <td></td>
+            return <tr key={task.id} className={task.completed ? 'completed' : 'not-completed'}>
+              <td><input type="checkbox" onClick={() => completeTask(task.id)} ></input></td>
               <td>{task.task}</td>
               <td>{task.duedate}</td>
-              {/* <td><button onClick={deleteTask}>Delete</button></td> */}
+              <td><button onClick={() => deleteTask(task.id)}>Delete</button></td>
               {/* <td><button onClick={editTask}>Edit</button></td> */}
               </tr>
           })
         }
         </tbody>
       </table>
+      </div>
     </div>
   );
 

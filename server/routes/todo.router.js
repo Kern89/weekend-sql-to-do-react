@@ -50,7 +50,7 @@ router.put('/complete/:id', (req, res) => {
     const task = req.params;
     console.log('req.params', req.params);
     let queryText = `
-        UPDATE "todo" SET "completed" = true
+        UPDATE "todo" SET "completed" = NOT "completed"
         WHERE "id" = $1;
         `;
     pool.query(queryText, [task.id])

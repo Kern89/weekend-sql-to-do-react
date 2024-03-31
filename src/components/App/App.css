@@ -1,12 +1,39 @@
 .App {
   text-align: center;
+  font-family: Verdana, Geneva, sans-serif;
+  color: #092327;
 }
-
+html {
+  background-color: #092327;
+  color: #CF9111;
+}
+h1 {
+  text-align: center;
+}
+input, button {
+  background-color: grey;
+}
+form {
+  max-width: 300px;
+}
+#submitContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+#table {
+  display: flex;
+  justify-content: center;
+}
+.completed {
+  /* font-style: italic; */
+  color: #805A0C;
+  font-weight: lighter;
+}
 .App-header {
   background-color: #222;
   height: 70px;
   padding: 20px;
-  color: white;
+  /* color: white; */
 }
 
 .App-title {
