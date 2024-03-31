@@ -11,18 +11,29 @@ h1 {
   text-align: center;
 }
 input, button {
-  background-color: grey;
+  background-color: #E0E8E9;
 }
 form {
   max-width: 300px;
 }
+#formContainer {
+  display: flex;
+  justify-content: center;
+}
 #submitContainer {
   display: flex;
   justify-content: flex-end;
+  padding-top: 5px;
 }
 #table {
   display: flex;
   justify-content: center;
+}
+.dateContainer {
+  padding-left: 40px;
+}
+.deleteContainer {
+  padding-left: 20px;
 }
 .completed {
   /* font-style: italic; */

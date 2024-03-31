@@ -1,6 +1,7 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 function App () {
   
@@ -57,6 +58,7 @@ function App () {
   return (
     <div>
       <h1>Complete-Me List App</h1>
+      <div id='formContainer'>
       <form onSubmit={sendToServer} >
         New task: <input type="text" value={todoItem} 
         onChange={(e) => setTodoItem(e.target.value)} />
@@ -69,6 +71,7 @@ function App () {
           <input type="submit" value="submit" id="submit" />
         </div>
       </form>
+      </div>
       <br />
       <br />
       {/* table for tasks */}
@@ -78,7 +81,7 @@ function App () {
           <tr>
             <th></th>
             <th>Task</th>
-            <th>Due On</th>
+            <th className='dateContainer'>Due On</th>
             <th></th>
           </tr>
         </thead>
@@ -88,8 +91,8 @@ function App () {
             return <tr key={task.id} className={task.completed ? 'completed' : 'not-completed'}>
               <td><input type="checkbox" onClick={() => completeTask(task.id)} ></input></td>
               <td>{task.task}</td>
-              <td>{task.duedate}</td>
-              <td><button onClick={() => deleteTask(task.id)}>Delete</button></td>
+              <td className='dateContainer'>{moment(task.duedate).format('l')}</td>
+              <td className='deleteContainer'><button onClick={() => deleteTask(task.id)}>Delete</button></td>
               {/* <td><button onClick={editTask}>Edit</button></td> */}
               </tr>
           })
