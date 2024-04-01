@@ -39,6 +39,8 @@ function App () {
     const data = { task: todoItem, duedate: duedate }
     axios.post('/api/todo', data).then((response) => {
     getTodoList();
+    setDueDate('');
+    setTodoItem('');
     }).catch((error) => {
     console.log('Error in axios POST:', error);
     alert('Something went wrong!')
@@ -61,11 +63,11 @@ function App () {
       <div id='formContainer'>
       <form onSubmit={sendToServer} >
         New task: <input type="text" value={todoItem} 
-        onChange={(e) => setTodoItem(e.target.value)} />
+        onChange={(e) => setTodoItem(e.target.value)} required />
         <br />
         <br />
         Due on: <input type="date" value={duedate} 
-        onChange={(e) => setDueDate(e.target.value)} />
+        onChange={(e) => setDueDate(e.target.value)} required />
         <br />
         <div id='submitContainer'>
           <input type="submit" value="submit" id="submit" />
