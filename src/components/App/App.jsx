@@ -15,7 +15,7 @@ function App () {
       setTodoList(response.data);
     }).catch((error) => {
       console.log('Error in axios GET:', error);
-      alert('Something went wrong in axios.get')
+      alert('Something went wrong!')
     })
   };
   const deleteTask = (id) => {
@@ -24,7 +24,7 @@ function App () {
       getTodoList();
     }).catch((error) => {
       console.log('Error in axios delete:', error);
-      alert('Something went wrong in axios delete')
+      alert('Something went wrong!')
     })
   }
 
@@ -41,7 +41,7 @@ function App () {
     getTodoList();
     }).catch((error) => {
     console.log('Error in axios POST:', error);
-    alert('Something went wrong in axios.post')
+    alert('Something went wrong!')
     })
   };
 
@@ -51,7 +51,7 @@ function App () {
       getTodoList();
     }).catch((error) => {
       console.log('Error in axios PUT:', error);
-      alert('Something went wrong in axios.PUT')
+      alert('Something went wrong!')
     })
   }
 
